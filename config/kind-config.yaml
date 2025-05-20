@@ -1,0 +1,59 @@
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+name: edbpgai
+networking:
+  # apiServerAddress: "0.0.0.0"
+  apiServerPort: 6443
+  # the default CNI will not be installed
+  # we will install calico instead
+  # kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/tigera-operator.yaml
+  # kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.28.0/manifests/custom-resources.yaml
+  # disableDefaultCNI: true
+  # this is required for calico, otherwise we will see the following error:
+  # Could not resolve CalicoNetwork IPPool and kubeadm configuration: IPPool
+  # 192.168.0.0/16 is not within the platform's configured pod network CIDR(s)
+  # [10.244.0.0/16]
+  # podSubnet: 192.168.0.0/16
+  kubeProxyMode: "ipvs"
+nodes:
+  - role: control-plane
+    image: kindest/node:v1.29.8@sha256:d46b7aa29567e93b27f7531d258c372e829d7224b25e3fc6ffdefed12476d3aa
+    extraPortMappings:
+      - containerPort: 30091
+        hostPort: 8000
+        # this port is used to expose transporter-rw-service
+      - containerPort: 30093
+        hostPort: 8001
+        # this port is used to expose public beacon ingest from the agent
+      - containerPort: 30092
+        hostPort: 8002
+
+        ### the following 4 ports are allocated for kafka cluster ###
+      - containerPort: 30100
+        # for kafka bootstrap port
+        hostPort: 8100
+      - containerPort: 30101
+        # for kafka broker0 port
+        hostPort: 8101
+      - containerPort: 30102
+        # for kafka broker1 port
+        hostPort: 8102
+      - containerPort: 30103
+        # for kafka broker2 port
+        hostPort: 8103
+
+  - role: worker
+    image: kindest/node:v1.29.8@sha256:d46b7aa29567e93b27f7531d258c372e829d7224b25e3fc6ffdefed12476d3aa
+    labels:
+      topology.kubernetes.io/region: kind-region-1
+      topology.kubernetes.io/zone: kind-region-1a
+  - role: worker
+    image: kindest/node:v1.29.8@sha256:d46b7aa29567e93b27f7531d258c372e829d7224b25e3fc6ffdefed12476d3aa
+    labels:
+      topology.kubernetes.io/region: kind-region-1
+      topology.kubernetes.io/zone: kind-region-1b
+  - role: worker
+    image: kindest/node:v1.29.8@sha256:d46b7aa29567e93b27f7531d258c372e829d7224b25e3fc6ffdefed12476d3aa
+    labels:
+      topology.kubernetes.io/region: kind-region-2
+      topology.kubernetes.io/zone: kind-region-2a
