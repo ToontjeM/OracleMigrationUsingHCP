@@ -22,7 +22,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 # Box metadata location and box name
 BOX_URL = "https://oracle.github.io/vagrant-projects/boxes"
-BOX_NAME = "oraclelinux/7"
+BOX_NAME = "oraclelinux/8"
 
 # UI object for printing information
 ui = Vagrant::UI::Prefixed.new(Vagrant::UI::Colored.new, "vagrant")
@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # VM name
-  VM_NAME = default_s('VM_NAME', 'oracle-19c-vagrant')
+  VM_NAME = default_s('VM_NAME', 'oracle-21c-vagrant')
 
   # Memory for the VM (in MB, 2300 MB is ~2.25 GB)
   VM_MEMORY = default_i('VM_MEMORY', 2300)
@@ -52,7 +52,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   VM_ORACLE_BASE = default_s('VM_ORACLE_BASE', '/opt/oracle')
 
   # Oracle home directory
-  VM_ORACLE_HOME = default_s('VM_ORACLE_HOME', '/opt/oracle/product/19c/dbhome_1')
+  VM_ORACLE_HOME = default_s('VM_ORACLE_HOME', '/opt/oracle/product/21c/dbhome_1')
 
   # Oracle SID
   VM_ORACLE_SID = default_s('VM_ORACLE_SID', 'ORCLCDB')

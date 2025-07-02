@@ -1,0 +1,21 @@
+---
+agent:
+  access_key: baak_1B6TMVVsV6CmfLQqNXWRbxRg3ToDSAs91SRosm1ZF17x0i7C9
+  beacon_server: beacon-se-emea.edbhcp.com:9443
+  project_id: prj_K5LbytHfQ2WWnELC
+  feature_flag_interval: 10m0s
+  plaintext: false
+  providers:
+    - onprem
+  schema_providers:
+    - "onprem-schema"
+provider:
+  onprem:
+    databases:
+      - resource_id: "demovagrant"
+        dsn: oracle://oracle:oracle@localhost:1521/ORCLPDB1
+        schema:
+          enabled: true
+          poll_interval: 15s 
+        tags:
+          - "demovagrant"

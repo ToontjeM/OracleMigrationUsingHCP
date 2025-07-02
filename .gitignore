@@ -1,0 +1,4 @@
+.edbtoken
+.vagrant/*
+*.log
+.git/*
