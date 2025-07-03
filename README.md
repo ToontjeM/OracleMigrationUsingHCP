@@ -22,20 +22,23 @@ This demo uses the [Oracle github repo](https://github.com/oracle/vagrant-projec
 Because we are deploying Oracle 21c, we need to download the Oracle database installer and store it on your filesystem according to (https://github.com/oracle/vagrant-projects/tree/main/OracleDatabase/21.3.0#getting-started).
 
 ### Prepare the HM
-- Create a machine user in your account, give him the `admin` role and project, then create an access key for that user. (See https://www.enterprisedb.com/docs/edb-postgres-ai/hybrid-manager/using_hybrid_manager/using_the_api/access_key/)
+- Create a machine user in your account, give him the `admin` role.
+- In the project assign the machine user all roles (probably this is excessive), then create an access key for that user. (See https://www.enterprisedb.com/docs/edb-postgres-ai/hybrid-manager/using_hybrid_manager/using_the_api/access_key/)
 
 Make sure you define the following variables before provisioning the demo:
 - `export ACCESS_KEY=<your access key>`
 - `export EDB_SUBSCRIPTION_TOKEN=<your repo 2.0 token>`
 - `export PROJECT_NAME=<your project>`
-These will be dropped in a file and used in the provisioning scripts.
+These will be used in the provisioning scripts.
 
 ### Provision the demo
 Provision the demo using `00-provision.sh`.
 
-After provisioning Oracle will be avialable on `localhost:1521'.
+After provisioning an Oracle instance will be avialable on `localhost:1521' and a cluster called `migrationdemo` is created in your project.
 
 The Oracle defaults are described [here](https://github.com/oracle/vagrant-projects/tree/main/OracleDatabase/21.3.0#oracle-database-parameters). In the file `config/env.local` you can define a fixed password for the `oracle` user. In this demo this password is defined as `oracle`. The password for user `hr` is `hr`.
 
 For the migration user use `migrationuser` with password `migration`.
+
+Superuser for the cluster is `edb-admin` with password `enterprisedb`.
 

@@ -1,5 +1,5 @@
 alter session set container=ORCLPDB1;
-@/opt/oracle/product/21c/dbhome_1/demo/schema/human_resources/hr_main.sql hr users temp /opt/oracle/product/21c/dbhome_1/demo/schema/log/hr_install.log 
+@/opt/oracle/product/21c/dbhome_1/demo/db-sample-schemas-21.1/mksample.sql oracle oracle hrpw oepw pmpw ixpw shpw bipw users temp /opt/oracle/product/21c/dbhome_1/demo/schema/log/mksample.log 
 
 GRANT SELECT ON V$VERSION TO hr;
 GRANT SELECT ON V$INSTANCE TO hr;

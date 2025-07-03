@@ -1,0 +1,34 @@
+{
+    "psr": {
+        "clusterName":"migrationdemo",
+        "password": "enterprisedb",
+        "location_id": "managed-default-location",
+        "clusterData": {
+            "instances": 1,
+            "resourceRequest": {
+                "request": {
+                    "memory": "4Gi",
+                    "cpu": 2
+                }
+            },
+            "storageConfiguration": {
+                "primaryStorage": {
+                    "size": "10",
+                    "storageClass": "gp2"
+                },
+                "walStorage": {
+                    "size": "10",
+                    "storageClass": "gp2"
+                }
+            },
+            "image": {
+              "url": "docker.enterprisedb.com/pgai-platform/edb-postgres-advanced:17.5-2506091630-full",
+              "digest": "sha256:73a6ec7389f90dbab0e76d221a5ed2427be73ac264ab32546f877b18a638ce45"
+            },
+            "backupRetentionPeriod": "1d",
+            "backupSchedule": "0 20 4 * * *",
+            "networkAccessType": "NetworkAccessTypePublic"
+        }
+    },
+    "projectId": "prj_K5LbytHfQ2WWnELC"
+}
