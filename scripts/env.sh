@@ -1,3 +1,4 @@
 export ACCESS_KEY=baak_1B6TMVVsV6CmfLQqNXWRbxRg3ToDSAs91SRosm1ZF17x0i7C9
 export EDB_SUBSCRIPTION_TOKEN=pdZe6pcnWIgmuqdR7v1L38rG6Z6wJEsY
 export PROJECT_NAME="Tons Project"
+export CLUSTERNAME="migrationdemo_2025-07-15_11-58-02"

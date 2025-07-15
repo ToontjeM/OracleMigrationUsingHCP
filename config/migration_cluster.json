@@ -1,6 +1,6 @@
 {
     "psr": {
-        "clusterName":"migrationdemo",
+        "clusterName":"migrationdemo_2025-07-15_11-58-02",
         "password": "enterprisedb",
         "location_id": "managed-default-location",
         "clusterData": {

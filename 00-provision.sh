@@ -13,7 +13,10 @@ cat > ./scripts/env.sh << EOF
 export ACCESS_KEY=$ACCESS_KEY
 export EDB_SUBSCRIPTION_TOKEN=$EDB_SUBSCRIPTION_TOKEN
 export PROJECT_NAME="${PROJECT_NAME}"
+export CLUSTERNAME="migrationdemo_$(date '+%Y-%m-%d_%H-%M-%S')"
 EOF
+
+source scripts/env.sh
 
 echo "Deploying Postgres instance on HM"
 PROJECT_ID=$(curl -s --request GET \
@@ -30,7 +33,7 @@ rm ./config/migration_cluster.json
 cat >> ./config/migration_cluster.json << EOF
 {
     "psr": {
-        "clusterName":"migrationdemo",
+        "clusterName":"${CLUSTERNAME}",
         "password": "enterprisedb",
         "location_id": "managed-default-location",
         "clusterData": {
